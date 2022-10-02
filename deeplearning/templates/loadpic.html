@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+  </head>
+  <body>
+  <form method="post" enctype="multipart/form-data" action="{% url 'add' %}">
+
+      <div class="form-group">
+         <label for="icon_input">图像</label>
+         <input name="img" type="file" id="icon_input">
+      </div>
+
+     {% csrf_token %}
+     <button type="submit" class="btn btn-success btn-block">提交</button>
+
+ </form>
+
+<!--    <input type="file" onchange="previewHandle(this)" />-->
+<!--    <img id="preview-img" />-->
+
+<!--    <script>-->
+<!--      function previewHandle(fileDOM) {-->
+<!--        var file = fileDOM.files[0], // 获取文件-->
+<!--          imageType = /^image\//,-->
+<!--          reader = ""; // 文件是否为图片-->
+
+<!--        if (!imageType.test(file.type)) {-->
+<!--          alert("请选择图片！");-->
+<!--          return;-->
+<!--        } // 判断是否支持 FileReader-->
+<!--        if (window.FileReader) {-->
+<!--          reader = new FileReader();-->
+<!--        } // IE9及以下不支持 FileReader-->
+<!--        else {-->
+<!--          alert("您的浏览器不支持图片预览功能，如需该功能请升级您的浏览器！");-->
+<!--          return;-->
+<!--        } // 读取完成-->
+<!--        // reader.onload = function(event) {-->
+<!--        //   // 获取图片DOM-->
+<!--        //   var img = document.getElementById("preview-img"); // 图片路径设置为读取的图片-->
+<!--        //   img.src = event.target.result;-->
+<!--        // };-->
+<!--        // reader.readAsDataURL(file);-->
+<!--      }-->
+<!--    </script>-->
+  </body>
+</html>

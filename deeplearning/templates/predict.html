@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>双分支预测</title>
+    <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+    <script src="https://lib.baomitu.com/echarts/5.1.0/echarts.min.js"></script>
+    <script type="text/javascript">
+        window.onload=function(){
+
+        }
+    </script>
+
+      <style>
+            html, body {
+                   width: 100%;
+                   height: 100%;
+                   font-family:"微软雅黑";
+                   background-color: #ffffff;
+                   margin-left:10px;
+                   margin-top: 0px;
+                   /* overflow: hidden; */
+               }
+            #sharch{
+                 padding-top:10px;
+                 padding-left: 5px;
+            }
+            #mainn1{
+                   width: 512px;
+                   height: 512px;
+                   background-color: #ffffff;
+            }
+            .nav {
+                width: 600px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 18px;
+                margin-top: 60px;
+            }
+            .nav li{
+                list-style: none;
+                border: solid 1px black;
+                width: 240px;
+
+            }
+            .nav li a {
+                margin-left: 60px;
+                text-decoration: none;
+                color: white;
+            }
+            #left{
+                height: 750px;
+                width: 750px;
+                background-color: #ffffff;
+                float: left;
+                /*margin-right: 12px;*/
+                /*margin-top: 20px;*/
+            }
+            #mid{
+                height: 750px;
+                width: 40px;
+                background-color: #ffffff;
+                float: left;
+                /*margin-right: 12px;*/
+                /*margin-top: 20px;*/
+            }
+            #right{
+                height: 750px;
+                width: 750px;
+                background-color: #ffffff;
+                float: left;
+                margin-right: 12px;
+                /*margin-top: 20px;*/
+            }
+            #top{
+                height: 50px;
+                width: 1500px;
+                background-color: #ffffff;
+                /*margin-bottom: 12px;*/
+                /*line-height: 50px;*/
+            }
+            .pic{
+                height: 512px;
+                width: 512px;
+                background-color: #16C0F8;
+                margin-left: 100px;
+                background: url('../../static/uploads/test.png');
+            }
+            .btn1{
+                height: 40px;
+                width: 40px;
+                /*background-color: #16C0F8;*/
+                /*margin-left: 700px;*/
+                margin-top: 250px;
+
+            }
+
+            label{
+                height: 512px;
+                width: 512px;
+                background-color: #16C0F8;
+                margin-left: 100px;
+                /*background: url('../../static/uploads/predict.png');*/
+            }
+            #bottom{
+                height: 50px;
+                width: 1500px;
+                background-color: #34262C;
+                /*margin-top: 12px;*/
+                /*line-height: 50px;*/
+            }
+
+
+
+
+           </style>
+
+</head>
+    <body>
+    <script type="text/javascript" >
+        function parse(){
+
+
+        $.ajax({
+
+            url:"/predict1",
+            type:"POST",
+            traditional:true,
+            contentType: "application/json;charset=UTF-8",
+
+            success:function(result){
+                alert("预测成功!点击显示预测图片！");
+                window.location.href = "{% url 'predict2' %}";
+            },
+            error:function(e){
+                alert("错误！！");
+            }
+        });
+        var bigImg=document.getElementById('label');//创建一个img元素
+        bigImg.src=url('../../static/uploads/predict.png');
+        //给img元素的src属性赋值
+        var myDiv=document.getElementById('right');//获得dom对象
+        myDiv.appendChild(bigImg);//为dom添加子元素img
+
+    };
+
+
+
+
+    </script>
+    <div id="top">
+        <h2 style="text-align: center; color:#42638e">双分支模型预测结果展示</h2>
+    </div>
+    <div id="left">
+        <h3 style="color: #42638e; text-align: center">输入图片</h3>
+        <div class="pic">
+        </div>
+
+    </div>
+    <div id="mid">
+        <div class="btn1">
+                <input type="button" value="预测" style="width:40px; height:30px;" id="form_search" onclick="parse()">
+        </div>
+    </div>
+    <div id="right">
+         <h3 style="color: #42638e; text-align: center">预测结果</h3>
+        <div id="label">
+<!--            <div id="mainn1">-->
+
+<!--            </div>-->
+
+        </div>
+
+    </div>
+    <div id="bottom"></div>
+
+    </body>
+
+<script src="https://lib.baomitu.com/echarts/5.1.0/echarts.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
+
+</html>
